@@ -24,6 +24,23 @@ const userRepository = {
     return result
   },
 
+  updateProfile: async (id, data) => {
+    const { username, full_name, phone_number, password } = data
+    // Câu lệnh SQL linh hoạt: Nếu có password mới thì cập nhật, không thì giữ nguyên
+    const query = `
+      UPDATE users 
+      SET username = ?, full_name = ?, phone_number = ?, password = ? 
+      WHERE id = ?
+    `
+    const [result] = await db.execute(query, [username, full_name, phone_number, password, id])
+    return result
+  },
+
+  findById: async (id) => {
+    const [rows] = await db.execute('SELECT * FROM users WHERE id = ?', [id])
+    return rows[0]
+  },
+
   savePendingUser: async (userData, otp, expiresAt) => {
     const query = `
       INSERT INTO users (username, email, password, otp_code, otp_expires_at, is_active, role) 

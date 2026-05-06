@@ -4,8 +4,8 @@ const verifyController = require('../controllers/verifyController')
 const registerController = require('../controllers/registerController')
 const forgotPasswordController = require('../controllers/forgotPasswordController')
 const authController = require('../controllers/authController')
-// const userController = require('../controllers/userController')
-// const { protect } = require('../middleware/authMiddleware')
+const userController = require('../controllers/userController')
+const { protect } = require('../middleware/authMiddleware')
 const { registerRateLimiter, validateRegisterInput } = require('../middleware/registerMiddleware')
 const { loginRateLimiter, validateLoginInput } = require('../middleware/loginMiddleware')
 
@@ -27,5 +27,5 @@ router.post('/login',
   authController.handleLogin
 )
 
-// router.put('/edit-profile', protect, userController.handleEditProfile)
+router.put('/update-profile', protect, userController.handleUpdateProfile)
 module.exports = router
