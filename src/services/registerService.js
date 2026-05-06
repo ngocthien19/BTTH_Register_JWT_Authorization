@@ -12,7 +12,7 @@ const processNewRegistration = async (userData) => {
     throw error
   }
 
-  const hashedPassword = await bcrypt.hash(userData.password, 10)
+  const hashedPassword = await bcrypt.hash(userData.password, 8)
   const otp = generateOTP()
   const expiresAt = new Date(Date.now() + 10 * 60000)
 
