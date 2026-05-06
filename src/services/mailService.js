@@ -11,14 +11,14 @@ const transporter = nodemailer.createTransport({
 
 const sendActivationEmail = async (email, otp) => {
   const mailOptions = {
-    from: `"Thư viện Đại học" <${process.env.EMAIL_USER}>`,
+    from: `"Shoes Management" <${process.env.EMAIL_USER}>`,
     to: email,
-    subject: 'Mã OTP kích hoạt tài khoản sinh viên',
+    subject: 'Mã OTP kích hoạt tài khoản người dùng',
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; padding: 20px;">
         <h2 style="color: #2c3e50; text-align: center;">Xác thực đăng ký tài khoản</h2>
         <p>Chào bạn,</p>
-        <p>Bạn đang thực hiện đăng ký tài khoản tại <b>Hệ thống Quản lý Thư viện</b>. Mã OTP của bạn là:</p>
+        <p>Bạn đang thực hiện đăng ký tài khoản tại <b>Hệ thống Quản lý Giày Dép</b>. Mã OTP của bạn là:</p>
         <div style="background-color: #f8f9fa; padding: 15px; text-align: center; font-size: 24px; font-weight: bold; letter-spacing: 5px; color: #e74c3c; border-radius: 5px;">
           ${otp}
         </div>
