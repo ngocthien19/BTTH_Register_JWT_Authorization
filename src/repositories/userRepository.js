@@ -12,6 +12,18 @@ const userRepository = {
     return result
   },
 
+  updateOTPByEmail: async (email, otp, expiresAt) => {
+    const query = 'UPDATE users SET otp_code = ?, otp_expires_at = ? WHERE email = ?'
+    const [result] = await db.execute(query, [otp, expiresAt, email])
+    return result
+  },
+
+  resetPassword: async (email, hashedPassword) => {
+    const query = 'UPDATE users SET password = ?, otp_code = NULL, otp_expires_at = NULL WHERE email = ?'
+    const [result] = await db.execute(query, [hashedPassword, email])
+    return result
+  },
+
   savePendingUser: async (userData, otp, expiresAt) => {
     const query = `
       INSERT INTO users (username, email, password, otp_code, otp_expires_at, is_active, role) 
